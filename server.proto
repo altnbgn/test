@@ -1,0 +1,19 @@
+// image.proto Command: python3 -m grpc_tools.protoc -I . --python_out=. --grpc_python_out=. server.proto
+
+syntax = "proto3";
+
+package image;
+
+message ImageRequest {
+    bytes image_data = 1;
+    string cameraId = 2;
+    int64 timestamp = 3;
+}
+
+message ImageResponse {
+    string message = 1;
+}
+
+service ImageService {
+    rpc SendImage (stream ImageRequest) returns (ImageResponse);
+}
