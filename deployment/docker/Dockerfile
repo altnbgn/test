@@ -1,5 +1,5 @@
 # Building
-FROM python:3.9.12-slim AS builder
+FROM python:3.11.6-slim AS builder
 
 RUN apt-get update && \
     apt-get install -y libpq-dev gcc ffmpeg libsm6 libxext6 libgl1
@@ -17,7 +17,7 @@ RUN mim install "mmdet==2.25.2"
 RUN find /opt/venv \( -type d -a -name test -o -name tests \) -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) -exec rm -rf '{}' \+   
 
 # Operation
-FROM python:3.9.12-slim
+FROM python:3.11.6-slim
 
 RUN apt-get update && \
     apt-get install -y libpq-dev ffmpeg libsm6 libxext6 libgl1 -y && \
