@@ -9,11 +9,13 @@ RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 COPY requirements.txt .
+
+# Upgrade pip to the latest version
+RUN pip install --no-cache-dir --upgrade pip
+
 RUN pip install -r requirements.txt
-# RUN pip install mmcv-full==1.7.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.11.0/index.html
-RUN mim install mmcv-full==1.7.0 
-# RUN mim install "mmcv-full==1.6.2"
-RUN mim install "mmdet==2.25.2"
+RUN mim install mmcv-full==1.7.0
+RUN mim install mmdet==2.25.2
 RUN find /opt/venv \( -type d -a -name test -o -name tests \) -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) -exec rm -rf '{}' \+   
 
 # Operation
